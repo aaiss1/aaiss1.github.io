@@ -1,1 +1,1 @@
-My website - constantly being updated with new CV and interactive features as I expand my HTML knowledge. Template forked from BlackrockDigital/startbootstrap-agency.
+My personal website - more like a business card with my updated resume and social links.
