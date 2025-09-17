@@ -14,6 +14,8 @@ let renderer = new THREE.WebGLRenderer({antialias: true})
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.getElementById('landing').appendChild(renderer.domElement)
+onWindowResize();
+
 
 // Light source
 light = new THREE.SpotLight(0xccddff, 13)
@@ -56,9 +58,18 @@ if (!renderer.domElement) {
 window.addEventListener('resize', onWindowResize, false)
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight; // update existing camera
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
+
+    // Ensure #landing div matches renderer size (fixes iOS landscape white bars)
+    const landing = document.getElementById('landing');
+    landing.style.width = width + 'px';
+    landing.style.height = height + 'px';
 }
+
 
 //
