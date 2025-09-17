@@ -11,6 +11,7 @@ camera.position.set(0.0, 0.0, 5)
 // Scene and renderer
 let scene = new THREE.Scene()
 let renderer = new THREE.WebGLRenderer({antialias: true})
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.getElementById('landing').appendChild(renderer.domElement)
 
@@ -54,11 +55,10 @@ if (!renderer.domElement) {
 
 window.addEventListener('resize', onWindowResize, false)
 
-function onWindowResize(){
-	camera = new THREE.PerspectiveCamera
-			 (65, window.innerWidth/window.innerHeight, 0.1, 1000)
-	camera.position.set(0.0, 0.0, 5)
-    renderer.setSize( window.innerWidth, window.innerHeight )
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight; // update existing camera
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 //
